@@ -5,7 +5,7 @@ from google.cloud import firestore
 
 st.title('Farmers Market Data')
 st.metric(label="Debit", value="₹ 5000", delta="₹ 200")
-st.metric(label="loan", value="₹ 5000", delta="₹ 200")
+
 st.markdown("<h1 style='text-align: center; color: white;'>My Dashboard</h1>", unsafe_allow_html=True)
 
 
@@ -36,9 +36,6 @@ for user_doc in users_ref.stream():
 
     # Append the user's expenses to the list of all expenses.
     all_expenses.extend(user_expenses)
-
-# Now, 'all_expenses' contains the expenses for all users.
-# You can print or process this data as needed.
 exp_data = []
 in_data = []
 for expense in all_expenses:
@@ -54,5 +51,15 @@ for expense in all_expenses:
 st.write(in_data)
 exp_list = [item["amount"] for item in exp_data]
 user_list = [item["id"] for item in exp_data]
+sum = 0
+ids = 0
+for iteam in exp_data:
+    sum = sum + iteam["amount"]
+for id in exp_data:
+    ids = ids + 1
+
+
 ch_dt = pd.DataFrame(exp_list)
-st.line_chart(ch_dt)
+st.area_chart(ch_dt,color="#FFA500")
+st.metric(label="Expense", value=sum, delta="-200")
+st.metric(label="users" , value=ids, delta="2")
