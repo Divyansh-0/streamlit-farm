@@ -24,7 +24,6 @@ if option != 'None':
 
 
 # Initialize a list to store the retrieved data.
-<<<<<<< HEAD
         data_list = []
         for doc in users_ref.stream():
             data = doc.to_dict()
