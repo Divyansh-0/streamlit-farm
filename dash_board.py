@@ -34,7 +34,6 @@ if option != 'None':
         field2 = [entry['savings'] for entry in data_list]
         for ent in field2:
             sums_saving = sums_saving + ent
-=======
 data_list = []
 for doc in users_ref.stream():
     data = doc.to_dict()
@@ -45,7 +44,6 @@ sums_saving = 0
 field2 = [entry['savings'] for entry in data_list]
 for ent in field2:
     sums_saving = sums_saving + ent
->>>>>>> 03ee8c7aa67eb11b826aae38b7bdce932a25bc1d
 
 # Initialize a list to store all expenses.
         all_expenses = []
@@ -76,8 +74,6 @@ for ent in field2:
                 in_data.append(expense)
             else :
                 exp_data.append(expense)
-
-<<<<<<< HEAD
         exp_list = [item["amount"] for item in exp_data]
         user_list = [item["id"] for item in exp_data]
         sav_list = [item['savings'] for item in data_list]
@@ -105,7 +101,6 @@ for ent in field2:
         ch1_dt = pd.DataFrame(sav_list)
         st.bar_chart(ch1_dt,color="#DAF7A6")
         ch2_dt = pd.DataFrame(data_list)
-=======
 # st.write(exp_data)
 #st.write(in_data)
 exp_list = [item["amount"] for item in exp_data]
@@ -128,4 +123,3 @@ st.metric(label="Income", value=sum_inc, delta="200")
 st.metric(label="Savings", value=sums_saving, delta="₹ 7000")
 ch_dt = pd.DataFrame(exp_list)
 st.area_chart(ch_dt,color="#FFA500")
->>>>>>> 03ee8c7aa67eb11b826aae38b7bdce932a25bc1d
