@@ -22,7 +22,9 @@ if option != 'None':
         users_ref = db.collection("users")
 
 
+
 # Initialize a list to store the retrieved data.
+<<<<<<< HEAD
         data_list = []
         for doc in users_ref.stream():
             data = doc.to_dict()
@@ -33,6 +35,18 @@ if option != 'None':
         field2 = [entry['savings'] for entry in data_list]
         for ent in field2:
             sums_saving = sums_saving + ent
+=======
+data_list = []
+for doc in users_ref.stream():
+    data = doc.to_dict()
+    data_list.append(data)
+
+
+sums_saving = 0
+field2 = [entry['savings'] for entry in data_list]
+for ent in field2:
+    sums_saving = sums_saving + ent
+>>>>>>> 03ee8c7aa67eb11b826aae38b7bdce932a25bc1d
 
 # Initialize a list to store all expenses.
         all_expenses = []
@@ -64,6 +78,7 @@ if option != 'None':
             else :
                 exp_data.append(expense)
 
+<<<<<<< HEAD
         exp_list = [item["amount"] for item in exp_data]
         user_list = [item["id"] for item in exp_data]
         sav_list = [item['savings'] for item in data_list]
@@ -91,3 +106,27 @@ if option != 'None':
         ch1_dt = pd.DataFrame(sav_list)
         st.bar_chart(ch1_dt,color="#DAF7A6")
         ch2_dt = pd.DataFrame(data_list)
+=======
+# st.write(exp_data)
+#st.write(in_data)
+exp_list = [item["amount"] for item in exp_data]
+user_list = [item["id"] for item in exp_data]
+sum_inc = 0
+sum_exp = 0
+ids = 0
+for iteam in exp_data:
+    sum_exp= sum_exp + iteam["amount"]
+for id in exp_data:
+    ids = ids + 1
+for id in in_data:
+    ids = ids + 1
+for iteam in in_data:
+    sum_inc = sum_inc + iteam["amount"]
+ 
+st.metric(label="Expense", value=sum_exp, delta="-200")
+st.metric(label="users" , value=ids, delta="2")
+st.metric(label="Income", value=sum_inc, delta="200")
+st.metric(label="Savings", value=sums_saving, delta="₹ 7000")
+ch_dt = pd.DataFrame(exp_list)
+st.area_chart(ch_dt,color="#FFA500")
+>>>>>>> 03ee8c7aa67eb11b826aae38b7bdce932a25bc1d
